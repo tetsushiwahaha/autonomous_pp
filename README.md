@@ -1,9 +1,9 @@
 # autonomous_pp2
 
-<img="https://user-images.githubusercontent.com/52724526/85917890-02850300-b899-11ea-9cb4-6fed6b96509a.png" >
+<img src="https://user-images.githubusercontent.com/52724526/85917890-02850300-b899-11ea-9cb4-6fed6b96509a.png" width=100px >
 Display an orbit of the given autonomous ODE. The right hand of the
 ODE is described into a setup file. Compared with `autonomous_pp`, 
-it does not require a function definition file `ppfunc.pp` anymore. 
+you do not need  `ppfunc.pp` anymore. 
 The right hand of the ODE is evaluated by `eval()` function, thus 
 the speed of this utility is slower than `autonomous_pp`.
 
