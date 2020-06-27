@@ -1,5 +1,6 @@
 # autonomous_pp2
 
+A phase portrait viewer.
 Display an orbit of the given autonomous ODE. The right hand of the
 ODE is described into a setup file. Compared with `autonomous_pp`, 
 it does not require a function definition file `ppfunc.pp` anymore. 
