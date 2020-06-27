@@ -1,10 +1,10 @@
 # autonomous_pp2
 
-A phase portrait viewer.
+<img src="https://user-images.githubusercontent.com/52724526/85917890-02850300-b899-11ea-9cb4-6fed6b96509a.png" width=300px >
 Display an orbit of the given autonomous ODE. The right hand of the
-ODE is described into a setup file. Compared with `autonomous_pp`, 
-it does not require a function definition file `ppfunc.pp` anymore. 
-The right hand of the ODE is evaluated by `eval()` function, thus 
+ODE is described into a setup file. Compared with `autonomous_pp`,
+you do not need  `ppfunc.pp` anymore.
+The right hand of the ODE is evaluated by `eval()` function, thus
 the speed of this utility is slower than `autonomous_pp`.
 
 ## Requirements
@@ -13,7 +13,7 @@ the speed of this utility is slower than `autonomous_pp`.
     * matplotlib
 
 ## Files
-* pp.py -- a simulator 
+* pp.py -- a simulator
 * pptools.py -- misc. tools
 * in.json -- setup file. A JSON format.
 
@@ -33,11 +33,11 @@ the speed of this utility is slower than `autonomous_pp`.
 * `p_index`,  `p_position`: Poincare section definition. x[p_position] - p_position = 0
 
 ## How to use
-### mouse operation 
+### mouse operation
 
 - A new initial values is given by clicking on the appropriate location
 in the graph.
- 
+
 ### key operation
 
 - `s`: print the current status
@@ -48,6 +48,6 @@ in the graph.
 - `space`: clear transitions
 - `+`, `-`: change the coordinate system, $(x, y) \leftrightarrow (y, z)
   \leftrightarrow (z, x)$, toggle.
-- `q`: quit 
+- `q`: quit
 
 
