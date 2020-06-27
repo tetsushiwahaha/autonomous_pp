@@ -46,8 +46,8 @@ def redraw_frame(data):
 	yr = data.dict['yrange']
 	data.ax.set_xlim(xr)
 	data.ax.set_ylim(yr)
-	data.ax.set_xlabel('x')
-	data.ax.set_ylabel('y')
+	data.ax.set_xlabel('x', fontsize=12)
+	data.ax.set_ylabel('y', fontsize=12)
 	data.ax.grid(c='gainsboro', zorder=9)
 
 
