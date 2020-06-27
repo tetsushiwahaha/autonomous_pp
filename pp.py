@@ -26,7 +26,7 @@ def main():
 	tick = data.dict['tick']
 	duration = 10.0
 	period = 0
-	poincare.direction = -1
+	#poincare.direction = -1
 	running = True	
 	xlist = []
 	ylist = []
@@ -43,7 +43,7 @@ def main():
 			xlist = state.y[data.dispx, :]
 			ylist = state.y[data.dispy, :]
 			lines, = plt.plot(xlist, ylist,
-				  linewidth = 1, color = (0, 0, 0),
+				  linewidth = 1, color = (0.1, 0.1, 0.3),
 				  ls = "-", alpha = data.dict['alpha'])
 		if len(state.y_events[0]) != 0: # On the poincare section
 			period += state.t_events[0][0]
