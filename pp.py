@@ -28,8 +28,6 @@ def main():
 	period = 0
 	#poincare.direction = -1
 	running = True	
-	xlist = []
-	ylist = []
 	
 	while running:
 		if pptools.window_closed(data.ax) == True:
@@ -40,11 +38,10 @@ def main():
 			args=(data,), events = poincare, max_step = tick,
 			rtol = 1e-6, dense_output = True)
 		if data.visual_orbit == 1:
-			xlist = state.y[data.dispx, :]
-			ylist = state.y[data.dispy, :]
-			lines, = plt.plot(xlist, ylist,
-				  linewidth = 1, color = (0.1, 0.1, 0.3),
-				  ls = "-", alpha = data.dict['alpha'])
+			lines, = plt.plot(
+				state.y[data.dispx, :], state.y[data.dispy, :],
+				linewidth = 1, color = (0.1, 0.1, 0.3),
+				ls = "-", alpha = data.dict['alpha'])
 		if len(state.y_events[0]) != 0: # On the poincare section
 			period += state.t_events[0][0]
 			data.dict['period'] = period
