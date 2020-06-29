@@ -131,10 +131,14 @@ def show_param(data):
 
 def on_click(event, data):
 	s0 = data.now
-	s0[0] = event.xdata
-	s0[1] = event.ydata
-	plt.plot(s0[0], s0[1], 'o', markersize = 2, color="blue")
-	print(s0)
+	s0[data.dispx] = event.xdata
+	s0[data.dispy] = event.ydata
+	plt.plot(s0[data.dispx], s0[data.dispy], 'o', markersize = 2, color="blue")
+	# copies an average value to the rest state variables
+	avg = (s0[data.dispx] + s0[data.dispy])/2.0
+	for i in np.arange(len(s0)):
+		if (i != data.dispx and i != data.dispy):
+			s0[i] = avg
 	redraw_frame(data)
 	show_param(data)
 	data.now = s0
