@@ -4,6 +4,7 @@ import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 
 
+
 class DataStruct():
 	def __init__(self):
 		if len(sys.argv) != 2:
@@ -38,6 +39,11 @@ def init():
 		lambda event: keyin(event, data))
 #	plt.connect('close_event', 
 #		lambda event: closeall(event, data))
+#	plt.connect('figure_enter_event', 
+#		lambda event: figureenter(event, data))
+#	data.fig.canvas.get_tk_widget().focus_force()
+
+	show_param(data)
 	return data
 
 
@@ -120,6 +126,7 @@ def keyin(event, data):
 		ptr = data.param_ptr
 		data.dict['params'][ptr] -= data.dict['dparams'][ptr] 
 	show_param(data)
+	return
 
 def show_param(data):
 	s = ""
@@ -130,6 +137,8 @@ def show_param(data):
 	plt.title(s, color='b')
 
 def on_click(event, data):
+	if event.xdata == None and event.ydata == None:
+		return
 	s0 = data.now
 	s0[data.dispx] = event.xdata
 	s0[data.dispy] = event.ydata
@@ -142,6 +151,11 @@ def on_click(event, data):
 	redraw_frame(data)
 	show_param(data)
 	data.now = s0
+	return
+
+def figureenter(event, data):
+	print("xxxxxxxxxxxxx")
+	return
 
 def on_close():
 	running = False

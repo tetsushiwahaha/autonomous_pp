@@ -12,8 +12,8 @@ import pptools
 
 def func(t, x, data):
     v =  []
-    for i in np.arange(len(data.dict['func'])):
-        v.append(eval(data.dict['func'][i]))
+    for k in np.arange(len(data.dict['func'])):
+        v.append(eval(data.dict['func'][k]))
     return v
 
 def poincare(t, x, data):
