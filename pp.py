@@ -39,7 +39,7 @@ def main():
 			method = 'RK45', 
 			args = (data,), 
 			events = poincare, max_step = tick,
-			rtol = 1e-6, 
+			rtol = 1e-12, 
 			dense_output = True
 			)
 		if data.visual_orbit == 1:
@@ -47,7 +47,7 @@ def main():
 				state.y[data.dispx, :], state.y[data.dispy, :],
 				linewidth = 1, color = (0.1, 0.1, 0.3),
 				ls = "-", alpha = data.dict['alpha'])
-		if state.status == 1: # On the poincare section
+		if state.status == 1:	# A termination event occurred
 			data.dict['x0'] = s = state.y_events[0][-1]
 			plt.plot(s[data.dispx], s[data.dispy], 'o', 
 				markersize = 2, color="red",
@@ -55,13 +55,13 @@ def main():
 			period += state.t_events[0][-1]
 			#print(period)
 			data.dict['period'] = period
-			duration = period/2 + 0.1
+			duration = period/2 + 0.1 # make a new duration appropriately
 			period = 0.0
 			poincare.terminal = False
 		else:
 			poincare.terminal = True
 			period += duration
-		state0 = data.now = state.y[:, -1]
+		state0 = data.now = state.y[:, -1] # data.now: clicked point
 		plt.pause(0.001) #REQIRED
 
 if __name__ == '__main__':

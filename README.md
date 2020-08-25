@@ -20,6 +20,10 @@ ODE is described into a setup file.
 
     % python pp.py in.json
 
+or 
+
+    % ./pp.py in.json
+
 ## Setup file configuration
 
 * `func`: a definition of the right hand of the ODE.
