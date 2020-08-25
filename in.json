@@ -25,7 +25,7 @@
 "errors": 0.0000001,
 "explosion":	100,
 "period":	1,
-"tick":	0.1,
+"tick":	0.05,
 "ite_max":	10,
 "extrap":	2,
 "increment_param": 2,

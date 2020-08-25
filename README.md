@@ -11,9 +11,10 @@ ODE is described into a setup file.
     * matplotlib
 
 ## Files
-* pp.py:a simulator
-* pptools.py: misc. tools
-* in.json: setup file. A JSON format.
+* `pp.py`:a simulator
+* `pptools.py`: misc. tools
+* `in.json`: setup file with JSON format.
+* `*.json`: example setup files. 
 
 ## To exec
 
@@ -40,7 +41,7 @@ in the graph.
 
 - `s`: print the current status
 - `f`: show/hide trajectory (toggle). Poincare mapping points remain.
-- `w`: print the dictionary and dump it to `__ppout__.json`
+- `w`: print the dictionary into `__ppout__.json` and save `snapshot.pdf`
 - `p`: change the active parameter (default: 0, toggle)
 - up and down arrows: increase/decrease the active parameter value
 - `space`: clear transitions

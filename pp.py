@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Autonomous ODE simulator. 
 # Special Thank to S. Amoh on 2020/05/09
 #
@@ -35,7 +36,8 @@ def main():
 		state = solve_ivp(func, (0, duration), state0,
 			#method = 'DOP853', 
 			method = 'RK45', 
-			args=(data,), events = poincare, max_step = tick,
+			args = (data,), 
+			events = poincare, max_step = tick,
 			rtol = 1e-6, dense_output = True)
 		if data.visual_orbit == 1:
 			lines, = plt.plot(

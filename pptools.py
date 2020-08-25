@@ -137,11 +137,12 @@ def show_param(data):
 	plt.title(s, color='b')
 
 def on_click(event, data):
-	if event.xdata == None and event.ydata == None:
+	if event.xdata == None or event.ydata == None:
 		return
 	s0 = data.now
 	s0[data.dispx] = event.xdata
 	s0[data.dispy] = event.ydata
+	print(s0)
 	plt.plot(s0[data.dispx], s0[data.dispy], 'o', markersize = 2, color="blue")
 	# copies an average value to the rest state variables
 	avg = (s0[data.dispx] + s0[data.dispy])/2.0
