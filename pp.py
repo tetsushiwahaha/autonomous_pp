@@ -25,9 +25,10 @@ def main():
 	data = pptools.init()
 	state0 = data.dict['x0']
 	tick = data.dict['tick']
-	duration = 10.0
-	period = 0
-	#poincare.direction = -1
+	duration = 1.0
+	period = 0.0
+	poincare.direction = -1
+	poincare.terminal = True
 	running = True	
 	
 	while running:
@@ -38,21 +39,27 @@ def main():
 			method = 'RK45', 
 			args = (data,), 
 			events = poincare, max_step = tick,
-			rtol = 1e-6, dense_output = True)
+			rtol = 1e-6, 
+			dense_output = True
+			)
 		if data.visual_orbit == 1:
 			lines, = plt.plot(
 				state.y[data.dispx, :], state.y[data.dispy, :],
 				linewidth = 1, color = (0.1, 0.1, 0.3),
 				ls = "-", alpha = data.dict['alpha'])
-		if len(state.y_events[0]) != 0: # On the poincare section
-			period += state.t_events[0][0]
-			data.dict['period'] = period
+		if state.status == 1: # On the poincare section
 			data.dict['x0'] = s = state.y_events[0][-1]
 			plt.plot(s[data.dispx], s[data.dispy], 'o', 
 				markersize = 2, color="red",
 				 alpha = data.dict['alpha'])
-			period = duration - state.t_events[0][-1]
+			period += state.t_events[0][-1]
+			#print(period)
+			data.dict['period'] = period
+			duration = period/2 + 0.1
+			period = 0.0
+			poincare.terminal = False
 		else:
+			poincare.terminal = True
 			period += duration
 		state0 = data.now = state.y[:, -1]
 		plt.pause(0.001) #REQIRED

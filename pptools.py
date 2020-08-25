@@ -54,7 +54,7 @@ def redraw_frame(data):
 	data.ax.set_ylim(yr)
 	data.ax.set_xlabel('x', fontsize=12)
 	data.ax.set_ylabel('y', fontsize=12)
-	data.ax.grid(c='gainsboro', zorder=9)
+	data.ax.grid(c='gainsboro', ls='--', zorder=9)
 
 
 class jsonconvert(json.JSONEncoder):
@@ -75,7 +75,8 @@ def window_closed(ax):
 
 def keyin(event, data):
 	ptr = data.param_ptr
-	dim = len(data.dict['x0'])
+	#dim = len(data.dict['x0'])
+	dim = len(data.dict['func'])
 	if event.key == '+':
 		data.dispx += 1
 		if data.dispx >= dim:
