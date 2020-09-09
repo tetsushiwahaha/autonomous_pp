@@ -29,18 +29,19 @@ def main():
 	poincare_section.direction = -1
 	poincare_section.terminal = True
 	running = True	
+	time = 0.0
 	
 	while running:
 		if pptools.window_closed(data.ax) == True:
 			sys.exit()
 		state = solve_ivp(func, (0, duration), state0,
 			#method = 'DOP853', 
-			method = 'RK45', 
-			args = (data,), 
+			method = 'RK45', args = (data,), 
 			events = poincare_section, max_step = tick,
-			rtol = 1e-12, 
-			dense_output = True
-			)
+			rtol = 1e-12, dense_output = True
+		)
+		if 'fd_file' in dir(data):
+			pptools.dump_data(time, state, data)
 		if data.visual_orbit == 1:
 			lines, = plt.plot(
 				state.y[data.dispx, :], state.y[data.dispy, :],
@@ -51,7 +52,6 @@ def main():
 			plt.plot(s[data.dispx], s[data.dispy], 'o', 
 				markersize = 2, color="red", alpha = data.dict['alpha'])
 			period += state.t_events[0][-1]
-			#print(period)
 			data.dict['period'] = period
 			if period > duration:
 				duration = period * 0.51
@@ -61,6 +61,7 @@ def main():
 			period += duration
 			poincare_section.terminal = True
 		state0 = data.now = state.y[:, -1] # data.now: clicked point
+		time += state.t[-1]
 		plt.pause(0.001) #REQIRED
 
 if __name__ == '__main__':

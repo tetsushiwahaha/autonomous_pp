@@ -33,7 +33,7 @@ or
 * `x0`:	a list of initial values
 * `dparams`: a list of incremental values corresponding to the parameters
 * `tick`: a time step for drawing a curve
-* `p_index`,  `p_position`: Poincare section definition. x[p_position] - p_position = 0
+* `p_index`, `p_location`: Poincare section definition. x[p_index] - p_location = 0
 
 ## How to use
 ### mouse operation
@@ -49,7 +49,6 @@ in the graph.
 - `p`: change the active parameter (default: 0, toggle)
 - up and down arrows: increase/decrease the active parameter value
 - `space`: clear transitions
-- `+`, `-`: change the coordinate system, $(x, y) \leftrightarrow (y, z)
-  \leftrightarrow (z, x)$, toggle.
+- `+`, `-`: change the coordinate system, (x, y) -> (y, z) -> (z, x), toggle.
 - `q`: quit
 

@@ -1,3 +1,4 @@
+import os
 import sys, json
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,6 +22,10 @@ class DataStruct():
 		self.now = [0.0, 0.0]
 		if self.dict.get('alpha', None) == None:
 			self.dict['alpha'] = 1.0
+		if self.dict.get('dump_data', None) == 1:
+			bn = os.path.splitext(os.path.basename(sys.argv[1]))[0]
+			bn += '.dat'
+			self.fd_file = open(bn, mode='w')
 
 def init():
 	plt.rcParams['keymap.save'].remove('s')
@@ -84,7 +89,7 @@ def keyin(event, data):
 		data.dispy = data.dispx + 1
 		if data.dispy >= dim:
 			data.dispy = 0
-	if event.key == '-':
+	elif event.key == '-':
 		data.dispx -= 1
 		if data.dispx < 0 :
 			data.dispx = dim - 1
@@ -135,6 +140,7 @@ def show_param(data):
 	for key in data.dict['params']:
 		s += " param{:d}: {:.5f}  ".format(cnt, key) 
 		cnt += 1
+	print(s)
 	plt.title(s, color='b')
 
 def on_click(event, data):
@@ -143,7 +149,7 @@ def on_click(event, data):
 	s0 = data.now
 	s0[data.dispx] = event.xdata
 	s0[data.dispy] = event.ydata
-	print(s0)
+	print(s0, data.dict['period'])
 	plt.plot(s0[data.dispx], s0[data.dispy], 'o', markersize = 2, color="blue")
 	# copies an average value to the rest state variables
 	avg = (s0[data.dispx] + s0[data.dispy])/2.0
@@ -161,3 +167,10 @@ def figureenter(event, data):
 
 def on_close():
 	running = False
+
+def dump_data(time, state, data):
+	for i in np.arange(len(state.t)):
+		data.fd_file.write("{0:.6f} ".format(time + state.t[i]))
+		for j in np.arange(len(data.dict['x0'])):
+			data.fd_file.write("{0:.6f} ".format(state.y[j,i]))
+		data.fd_file.write("\n")

@@ -16,7 +16,7 @@
 "x0":	[ 0.1, 0.1, 0.1 ],
 
 "p_index": 2,
-"p_position": 0,
+"p_location": 0,
 
 "dparams":	[0.01, 0.01],
 
@@ -28,7 +28,8 @@
 "ite_max":	10,
 "extrap":	2,
 "increment_param": 2,
-"variable_param": 0
+"variable_param": 0,
+"dump_data": 1
 }
 
 

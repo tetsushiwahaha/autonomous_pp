@@ -13,11 +13,11 @@
 "yrange": [ -3.0, 3.0],
 "alpha": 0.5,
 
-"params":	[0.2, 0.1,  0, 0.0],
-"x0":	[ 0, -0.4070601046560084 ],
+"params":	[0.2],
+"x0":	[ 0.2, 0.3 ],
 
 "p_index": 0,
-"p_position": 0.0,
+"p_location": 0.0,
 
 "dparams":	[0.01, 0.01, 0.01, 0.01],
 
@@ -29,7 +29,9 @@
 "ite_max":	10,
 "extrap":	2,
 "increment_param": 2,
-"variable_param": 0
+"variable_param": 0,
+
+"dump_data": 1
 }
 
 
