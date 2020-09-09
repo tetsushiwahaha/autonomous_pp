@@ -20,7 +20,7 @@ ODE is described into a setup file.
 
     % python pp.py in.json
 
-or 
+or, if you could add an excutable permission to `pp.py`, 
 
     % ./pp.py in.json
 
@@ -34,6 +34,7 @@ or
 * `dparams`: a list of incremental values corresponding to the parameters
 * `tick`: a time step for drawing a curve
 * `p_index`, `p_location`: Poincare section definition. x[p_index] - p_location = 0
+* `dump_data`: 0 write nothing, 1 write data to a file.
 
 ## How to use
 ### mouse operation
