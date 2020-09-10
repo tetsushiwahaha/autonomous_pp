@@ -39,7 +39,7 @@ or, if you could add an excutable permission to `pp.py`,
 ## How to use
 ### mouse operation
 
-- A new initial values is given by clicking on the appropriate location
+- A new initial value can be given by clicking on the appropriate location
 in the graph.
 
 ### key operation
