@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-# Autonomous ODE simulator. 
-#
+'''
+	Autonomous ODE simulator. 
+	
+'''
 
 import sys, json
 import numpy as np
