@@ -1,7 +1,8 @@
-# autonomous_pp2
+# autonomous_pp
 
 <img src="https://user-images.githubusercontent.com/52724526/85917890-02850300-b899-11ea-9cb4-6fed6b96509a.png" width=300px align="center">
-Display an orbit of the given autonomous ODE. The right hand of the
+
+Display a phase portrait of the given autonomous ODE. The right hand of the
 ODE is described into a setup file. 
 
 
