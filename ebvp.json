@@ -2,8 +2,8 @@
 "_comment": "extended BVP equation",
 
 
-"func": [ "-x[2] + data.dict['params'][0] * x[0] * (1.0 - data.dict['params'][0]**2 * x[0]**2)",
-       "x[2] - data.dict['params'][1] * x[1]",
+"func": [ "-x[2] + data.dic['params'][0] * x[0] * (1.0 - data.dic['params'][0]**2 * x[0]**2)",
+       "x[2] - data.dic['params'][1] * x[1]",
        "x[0] - x[1]"
     ],
 

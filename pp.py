@@ -14,26 +14,27 @@ import pptools
 
 def func(t, x, data):
     v =  []
-    for k in np.arange(len(data.dict['func'])):
-        v.append(eval(data.dict['func'][k]))
+    for k in np.arange(len(data.dic['func'])):
+        v.append(eval(data.dic['func'][k]))
     return v
 
 def poincare_section(t, x, data):
-	return x[data.dict['p_index']] - data.dict['p_location']
+	return x[data.dic['p_index']] - data.dic['p_location']
 
 
 def main():
 	data = pptools.init()
-	state0 = data.dict['x0']
-	tick = data.dict['tick']
+	state0 = data.dic['x0']
+	tick = data.dic['tick']
 	duration = 0.5
 	period = 0.0
-	poincare_section.direction = -1
+	poincare_section.direction = 1
 	poincare_section.terminal = True
 	running = True	
 	time = 0.0
 	
 	while running:
+		traj = []
 		if pptools.window_closed(data.ax) == True:
 			sys.exit()
 		state = solve_ivp(func, (0, duration), state0,
@@ -42,19 +43,22 @@ def main():
 			events = poincare_section, max_step = tick,
 			rtol = 1e-12, dense_output = True
 		)
-		if 'fd_file' in dir(data):
+		#t = np.arange(0, duration, 0.01)
+		#traj = state.sol(t)
+
+		if 'fd_file' in dir(data): 	# dump data to file if defined.
 			pptools.dump_data(time, state, data)
-		if data.visual_orbit == 1:
+		if data.visual_orbit == 1:	# show the orbit
 			lines, = plt.plot(
 				state.y[data.dispx, :], state.y[data.dispy, :],
 				linewidth = 1, color = (0.1, 0.1, 0.3),
-				ls = "-", alpha = data.dict['alpha'])
+				ls = "-", alpha = data.dic['alpha'])
 		if state.status == 1:	# A termination event occurred
-			data.dict['x0'] = s = state.y_events[0][-1]
+			data.dic['x0'] = s = state.y_events[0][-1]
 			plt.plot(s[data.dispx], s[data.dispy], 'o', 
-				markersize = 2, color="red", alpha = data.dict['alpha'])
+				markersize = 2, color="red", alpha = data.dic['alpha'])
 			period += state.t_events[0][-1]
-			data.dict['period'] = period
+			data.dic['period'] = period
 			if period > duration:
 				duration = period * 0.51
 			period = 0.0

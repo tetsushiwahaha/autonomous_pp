@@ -2,11 +2,11 @@
 "_comment": "van der Pol equation",
 
 "func": [ "x[1]",
-		"data.dict['params'][0] * (1.0 - x[0] * x[0]) * x[1]  - x[0]"
+		"data.dic['params'][0] * (1.0 - x[0] * x[0]) * x[1]  - x[0]"
     ],
 
 "_comment": [ "x[1]",
-	"-data.dict['params'][0] * x[1] - sin(x[0]) + data.dict['params'][1]"
+	"-data.dic['params'][0] * x[1] - sin(x[0]) + data.dic['params'][1]"
     ],
 
 "xrange": [ -3.0, 3.0],
