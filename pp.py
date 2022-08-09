@@ -21,12 +21,11 @@ def func(t, x, data):
 def poincare_section(t, x, data):
 	return x[data.dic['p_index']] - data.dic['p_location']
 
-
 def main():
 	data = pptools.init()
 	state0 = data.dic['x0']
 	tick = data.dic['tick']
-	duration = 0.5
+	duration = 10.0
 	period = 0.0
 	poincare_section.direction = 1
 	poincare_section.terminal = True
@@ -43,30 +42,29 @@ def main():
 			events = poincare_section, max_step = tick,
 			rtol = 1e-12, dense_output = True
 		)
-		#t = np.arange(0, duration, 0.01)
-		#traj = state.sol(t)
-
+		state0 = data.now = state.y[:, -1] # data.now: clicked point
 		if 'fd_file' in dir(data): 	# dump data to file if defined.
 			pptools.dump_data(time, state, data)
+		#state.y = state.y[:, :-1]
 		if data.visual_orbit == 1:	# show the orbit
 			lines, = plt.plot(
 				state.y[data.dispx, :], state.y[data.dispy, :],
-				linewidth = 1, color = (0.1, 0.1, 0.3),
+				linewidth = 2, color = (0.1, 0.1, 0.3),
 				ls = "-", alpha = data.dic['alpha'])
 		if state.status == 1:	# A termination event occurred
 			data.dic['x0'] = s = state.y_events[0][-1]
 			plt.plot(s[data.dispx], s[data.dispy], 'o', 
-				markersize = 2, color="red", alpha = data.dic['alpha'])
+				markersize = 3, color="red", alpha = data.dic['alpha'])
 			period += state.t_events[0][-1]
 			data.dic['period'] = period
 			if period > duration:
-				duration = period * 0.51
+				duration = period * 0.5
 			period = 0.0
 			poincare_section.terminal = False
 		else:
 			period += duration
 			poincare_section.terminal = True
-		state0 = data.now = state.y[:, -1] # data.now: clicked point
+		#state0 = data.now = state.y[:, -1] # data.now: clicked point
 		time += state.t[-1]
 		plt.pause(0.001) #REQIRED
 

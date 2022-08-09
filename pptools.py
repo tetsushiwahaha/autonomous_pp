@@ -32,7 +32,7 @@ def init():
 	plt.rcParams['keymap.quit'].remove('q')
 	data = DataStruct()
 
-	data.fig = plt.figure(figsize=(8, 8))
+	data.fig = plt.figure(figsize=(12, 12))
 	data.ax = data.fig.add_subplot(111)
 
 	redraw_frame(data)
@@ -112,7 +112,7 @@ def keyin(event, data):
 		plt.cla()
 		redraw_frame(data)
 	elif event.key == 'f':
-		plt.cla()
+		#plt.cla()
 		redraw_frame(data)
 		data.visual_orbit = 1 - data.visual_orbit
 	elif event.key == 's':
@@ -124,6 +124,11 @@ def keyin(event, data):
 		data.param_ptr += 1
 		if data.param_ptr >= len(data.dic['params']):
 			data.param_ptr = 0
+		print(f"changable parameter: {data.param_ptr}")
+	elif event.key == 'P':
+		data.param_ptr -= 1
+		if data.param_ptr < 0:
+			data.param_ptr = len(data.dic['params'])-1
 		print(f"changable parameter: {data.param_ptr}")
 	elif event.key == 'up':
 		ptr = data.param_ptr
@@ -138,7 +143,7 @@ def show_param(data):
 	s = ""
 	cnt = 0
 	for key in data.dic['params']:
-		s += " param{:d}: {:.5f}  ".format(cnt, key) 
+		s += " p{:d}: {:.3g}  ".format(cnt, key) 
 		cnt += 1
 	print(s)
 	plt.title(s, color='b')
